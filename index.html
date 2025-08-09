@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Francium Network — Buy FreeDNS Links</title>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<style>
+  :root{
+    --bg:#0b0b0b;
+    --card:#0f0f0f;
+    --accent:#ff2b2b;
+    --accent-2:#ff5555;
+    --muted:#bdbdbd;
+    --glass: rgba(255,255,255,0.03);
+    --radius:12px;
+    --maxw:1100px;
+  }
+  html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+  body{
+    background:
+      radial-gradient(800px 400px at 10% 10%, rgba(255,43,43,0.05), transparent 8%),
+      radial-gradient(600px 300px at 90% 90%, rgba(255,85,85,0.03), transparent 6%),
+      var(--bg);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:24px;
+    display:flex;
+    justify-content:center;
+  }
+
+  .app {
+    width:100%;
+    max-width:var(--maxw);
+    display:grid;
+    grid-template-columns: 260px 1fr;
+    gap:28px;
+  }
+
+  /* sidebar */
+  .sidebar{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:var(--radius);
+    padding:18px;
+    border:1px solid rgba(255,255,255,0.03);
+    min-height:520px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    position:sticky;
+    top:24px;
+  }
+  .logo{
+    display:flex;gap:12px;align-items:center;margin-bottom:12px;
+  }
+  .logo .mark{
+    width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:#111;
+    font-size:18px;
+    box-shadow:0 6px 18px rgba(255,43,43,0.12), inset 0 -2px 6px rgba(0,0,0,0.2);
+  }
+  .logo h1{font-size:16px;margin:0;letter-spacing:0.4px}
+  .logo p{margin:0;font-size:12px;color:var(--muted)}
+
+  nav{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+  .nav-item{
+    display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;color:var(--muted);
+    text-decoration:none;font-weight:600;font-size:14px;cursor:pointer;
+  }
+  .nav-item:hover{background:rgba(255,255,255,0.02);color:#fff}
+  .nav-item.active{background:linear-gradient(90deg, rgba(255,43,43,0.12), rgba(255,85,85,0.06)); color:#fff; border-left:3px solid var(--accent); padding-left:8px;}
+
+  .price-box{margin-top:16px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00)); border:1px solid rgba(255,255,255,0.02)}
+  .price-box h3{margin:0 0 8px 0;}
+  .price {font-size:22px;font-weight:800;color:var(--accent);letter-spacing:0.6px}
+  .pay-btn{display:inline-block;margin-top:10px;background:var(--accent);color:#111;padding:10px 12px;border-radius:8px;font-weight:800;text-decoration:none;box-shadow:0 6px 18px rgba(255,43,43,0.12)}
+  .small{font-size:12px;color:var(--muted);margin-top:8px}
+
+  /* content area */
+  .content {
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+    border-radius: var(--radius);
+    padding:22px;
+    min-height:520px;
+    border:1px solid rgba(255,255,255,0.03);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  }
+
+  header.page-hero{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  header.page-hero h2{margin:0;font-size:20px}
+  header.page-hero p{margin:0;color:var(--muted)}
+
+  .hero-card{
+    margin-top:18px;padding:18px;border-radius:12px;background:linear-gradient(90deg, rgba(255,43,43,0.03), rgba(255,85,85,0.02));
+    display:flex;gap:18px;align-items:center;justify-content:space-between;
+  }
+  .hero-left{flex:1}
+  .hero-cta{display:flex;gap:10px;align-items:center}
+
+  .btn{
+    background:var(--accent);
+    color:#111;padding:10px 14px;border-radius:10px;font-weight:800;text-decoration:none;
+    cursor:pointer;border:none;
+  }
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:700}
+
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+  .card{background:var(--card);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+  .card h4{margin:0 0 8px 0}
+  .muted{color:var(--muted)}
+
+  form.order-form{display:grid;gap:10px;max-width:700px}
+  input,textarea,select{
+    background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:#fff;
+  }
+  input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.28)}
+  .little{font-size:13px;color:var(--muted)}
+
+  footer.page-foot{margin-top:24px;padding-top:18px;border-top:1px dashed rgba(255,255,255,0.03);color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+  /* small screens */
+  @media (max-width:980px){
+    .app{grid-template-columns: 1fr; padding-bottom:40px}
+    .sidebar{position:relative;top:0;min-height:auto}
+  }
+</style>
+</head>
+<body>
+  <div class="app" id="app">
+    <aside class="sidebar" aria-label="Primary">
+      <div class="logo">
+        <div class="mark">FN</div>
+        <div>
+          <h1>Francium Network</h1>
+          <p>Fast FreeDNS links — $1 / 100 links</p>
+        </div>
+      </div>
+
+      <nav id="nav">
+        <a class="nav-item" data-route="#home">🏠 Home</a>
+        <a class="nav-item" data-route="#features">✨ Features</a>
+        <a class="nav-item" data-route="#buy">💳 Buy</a>
+        <a class="nav-item" data-route="#faq">❓ FAQ</a>
+        <a class="nav-item" data-route="#testimonials">💬 Reviews</a>
+        <a class="nav-item" data-route="#contact">✉️ Contact</a>
+        <a class="nav-item" data-route="#terms">📜 Terms</a>
+      </nav>
+
+      <div class="price-box">
+        <h3>Special Price</h3>
+        <div class="price">$1 <span class="muted" style="font-weight:600">/ 100 links</span></div>
+        <a class="pay-btn" href="https://cash.app/$FranciumNetwork" target="_blank" rel="noopener">Pay with Cash App</a>
+        <div class="small">Instant delivery after payment & DM proof.</div>
+      </div>
+    </aside>
+
+    <main class="content" id="content">
+      <!-- HOME -->
+      <section id="page-home" class="page" data-title="Home">
+        <header class="page-hero">
+          <div>
+            <h2>Francium Network</h2>
+            <p class="muted">Reliable FreeDNS links for proxies & unblocked games — cheap and fast.</p>
+          </div>
+          <div>
+            <button class="btn" data-nav="#buy">Buy Now</button>
+            <button class="btn ghost" onclick="window.location.hash='#contact'">DM / Contact</button>
+          </div>
+        </header>
+
+        <div class="hero-card">
+          <div class="hero-left">
+            <h3>Get 100 Custom FreeDNS Links for <span style="color:var(--accent)">$1</span></h3>
+            <p class="muted">Quick setup, tested links, and web-friendly format. Great for classrooms, personal use, and sharing with friends.</p>
+            <ul class="muted" style="margin-top:12px">
+              <li>Works on most school & workplace networks</li>
+              <li>Fast generation — delivered within minutes</li>
+              <li>Private & easy to share</li>
+            </ul>
+          </div>
+          <div class="hero-cta">
+            <a class="btn" href="https://cash.app/$FranciumNetwork" target="_blank" rel="noopener">Pay $1</a>
+            <button class="btn ghost" onclick="document.getElementById('buy-form').scrollIntoView({behavior:'smooth'})">Order Form</button>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-top:18px">
+          <div class="card">
+            <h4>How it works</h4>
+            <p class="muted">You pay via Cash App, send a screenshot / tx id via DM, and receive your pack of 100 links.</p>
+          </div>
+          <div class="card">
+            <h4>Delivery</h4>
+            <p class="muted">Most orders are fulfilled in under 30 minutes. High-volume orders prioritized.</p>
+          </div>
+          <div class="card">
+            <h4>Support</h4>
+            <p class="muted">DM support available for customization and troubleshooting.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section id="page-features" class="page" data-title="Features" style="display:none">
+        <header class="page-hero">
+          <div>
+            <h2>Features</h2>
+            <p class="muted">Why Francium Network links stand out</p>
+          </div>
+        </header>
+
+        <div style="margin-top:14px">
+          <div class="card" style="margin-bottom:12px">
+            <h4>Compatibility</h4>
+            <p class="muted">Links tested across multiple networks, devices, and browsers. Minimal configuration required.</p>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <h4>Reliability</h4>
+            <p class="muted">We monitor uptime and replace any links that fail within 24 hours of delivery.</p>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <h4>Customization</h4>
+            <p class="muted">Need specific hostnames or formats? Request custom packs during ordering.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUY -->
+      <section id="page-buy" class="page" data-title="Buy" style="display:none">
+        <header class="page-hero">
+          <div>
+            <h2>Buy Links</h2>
+            <p class="muted">Quick order — $1 for 100 FreeDNS links</p>
+          </div>
+        </header>
+
+        <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:280px" class="card">
+            <h4>One-click Payment</h4>
+            <p class="muted">Click the button to open Cash App. After payment, return and fill the order form.</p>
+            <a class="btn" href="https://cash.app/$FranciumNetwork" target="_blank" rel="noopener">Pay via Cash App</a>
+          </div>
+
+          <div style="flex:1;min-width:300px" class="card">
+            <h4>Order Form</h4>
+            <form id="buy-form" class="order-form" onsubmit="placeOrder(event)">
+              <label class="little">Your name</label>
+              <input id="name" placeholder="Name or nickname" required>
+
+              <label class="little">Contact (Discord / Telegram)</label>
+              <input id="contact" placeholder="discord#1234 or @username" required>
+
+              <label class="little">Payment TX ID / Screenshot (paste tx id)</label>
+              <input id="txid" placeholder="Cash App TX ID or note" required>
+
+              <label class="little">Notes (optional)</label>
+              <textarea id="notes" rows="3" placeholder="Any preferences or special requests"></textarea>
+
+              <div style="display:flex;gap:8px">
+                <button type="submit" class="btn">Submit Order</button>
+                <button type="button" class="btn ghost" onclick="clearForm()">Clear</button>
+              </div>
+              <div id="order-feedback" class="muted little" style="margin-top:8px"></div>
+            </form>
+          </div>
+        </div>
+
+        <div style="margin-top:16px" class="card">
+          <h4>What happens next?</h4>
+          <ol class="muted">
+            <li>We verify your payment (TX id or screenshot).</li>
+            <li>We generate your pack of 100 links.</li>
+            <li>We send links via DM or on the page you prefer.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="page-faq" class="page" data-title="FAQ" style="display:none">
+        <header class="page-hero">
+          <div>
+            <h2>FAQ</h2>
+            <p class="muted">Common questions answered</p>
+          </div>
+        </header>
+
+        <div style="margin-top:12px">
+          <div class="card">
+            <h4>Are these links safe?</h4>
+            <p class="muted">Links are simple FreeDNS redirects. Use at your own discretion—we deliver tested links but can't control third-party site content.</p>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <h4>Do you accept refunds?</h4>
+            <p class="muted">Refunds considered if links are non-functional and we can't fix them within 24 hours. Contact support with evidence.</p>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <h4>Can I request more links?</h4>
+            <p class="muted">Yes — custom pricing for bulk orders. DM for a quote.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section id="page-testimonials" class="page" data-title="Reviews" style="display:none">
+        <header class="page-hero">
+          <div>
+            <h2>Customer Reviews</h2>
+            <p class="muted">Real feedback from buyers</p>
+          </div>
+        </header>
+
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:12px">
+          <div class="card">
+            <strong>alex#1122</strong>
+            <p class="muted">"Super fast delivery — links worked on school wifi. 10/10."</p>
+          </div>
+          <div class="card">
+            <strong>luna</strong>
+            <p class="muted">"Cheap and reliable. I got my pack in 10 minutes."</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="page-contact" class="page" data-title="Contact" style="display:none">
+        <header class="page-hero">
+          <div>
+            <h2>Contact / Support</h2>
+            <p class="muted">DM on Discord or leave a message here</p>
+          </div>
+        </header>
+
+        <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:320px" class="card">
+            <h4>Contact Info</h4>
+            <p class="muted">Discord: <strong>Francium#0001</strong></p>
+            <p class="muted">Cash App: <strong>$FranciumNetwork</strong></p>
+            <p class="muted">Typical response time: 10–60 minutes</p>
+          </div>
+
+          <div style="flex:1;min-width:320px" class="card">
+            <h4>Send a Message</h4>
+            <form id="contact-form" onsubmit="sendMessage(event)" class="order-form">
+              <label class="little">Your contact (discord or email)</label>
+              <input id="c-contact" placeholder="discord#1234 or email" required>
+              <label class="little">Message</label>
+              <textarea id="c-message" rows="4" placeholder="How can we help?" required></textarea>
+              <div style="display:flex;gap:8px">
+                <button class="btn" type="submit">Send</button>
+                <button type="button" class="btn ghost" onclick="document.getElementById('contact-form').reset()">Reset</button>
+              </div>
+              <div id="contact-feedback" class="muted little" style="margin-top:8px"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Terms -->
+      <section id="page-terms" class="page" data-title="Terms" style="display:none">
+        <header class="page-hero">
+          <div>
+            <h2>Terms & Policy</h2>
+            <p class="muted">Short version</p>
+          </div>
+        </header>
+
+        <div style="margin-top:12px" class="card">
+          <h4>Usage</h4>
+          <p class="muted">You are responsible for how you use the links. We do not host or create content beyond the DNS redirects. We are not liable for misuse.</p>
+          <h4 style="margin-top:12px">Refunds</h4>
+          <p class="muted">Refunds considered only if links are non-functional and we cannot fix them within 24 hours of delivery.</p>
+        </div>
+      </section>
+
+      <footer class="page-foot">
+        <div>© <span id="year"></span> Francium Network</div>
+        <div>
+          <button class="btn ghost" onclick="printInvoice()">Print / Save Receipt</button>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+<script>
+  // Basic SPA navigation based on hash
+  const pages = Array.from(document.querySelectorAll('.page'));
+  const navItems = Array.from(document.querySelectorAll('.nav-item'));
+
+  function setActiveRoute(hash){
+    const route = hash || '#home';
+    pages.forEach(p=>{
+      const id = '#' + p.id.replace('page-','');
+      p.style.display = (id === route) ? '' : 'none';
+    });
+    navItems.forEach(n=>{
+      n.classList.toggle('active', n.dataset.route === route);
+    });
+    // Update document title
+    const visible = pages.find(p=>('#'+p.id.replace('page-',''))===route);
+    if(visible) document.title = visible.dataset.title + ' — Francium Network';
+  }
+
+  // setup nav clicks
+  navItems.forEach(n=>{
+    n.addEventListener('click', ()=>{ window.location.hash = n.dataset.route; })
+  });
+
+  window.addEventListener('hashchange', ()=> setActiveRoute(window.location.hash));
+  window.addEventListener('load', ()=> {
+    setActiveRoute(window.location.hash || '#home');
+    document.getElementById('year').textContent = new Date().getFullYear();
+  });
+
+  // Order form handling (client-only - demonstrates flow)
+  function placeOrder(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const contact = document.getElementById('contact').value.trim();
+    const txid = document.getElementById('txid').value.trim();
+    const notes = document.getElementById('notes').value.trim();
+    const feedback = document.getElementById('order-feedback');
+
+    if(!name||!contact||!txid) { feedback.textContent = 'Please fill required fields.'; return; }
+
+    // simulate submission & store locally as a "record"
+    const orders = JSON.parse(localStorage.getItem('fr_orders')||'[]');
+    const id = 'ORD' + Date.now();
+    orders.push({id,name,contact,txid,notes,created:new Date().toISOString()});
+    localStorage.setItem('fr_orders', JSON.stringify(orders));
+
+    feedback.textContent = 'Order submitted! We will verify payment and DM your links. Order ID: ' + id;
+    // optional: scroll to top of buy page
+    setTimeout(()=>{ document.getElementById('order-feedback').scrollIntoView({behavior:'smooth'}) }, 50);
+    // keep form but clear txid to avoid re-submitting same tx
+    document.getElementById('txid').value = '';
+  }
+
+  function clearForm(){
+    document.getElementById('buy-form').reset();
+    document.getElementById('order-feedback').textContent = '';
+  }
+
+  // Contact form - client only (message stored locally)
+  function sendMessage(e){
+    e.preventDefault();
+    const contact = document.getElementById('c-contact').value.trim();
+    const message = document.getElementById('c-message').value.trim();
+    const fb = document.getElementById('contact-feedback');
+    if(!contact||!message){ fb.textContent = 'Please fill both fields.'; return; }
+
+    const msgs = JSON.parse(localStorage.getItem('fr_messages')||'[]');
+    msgs.push({contact,message,when:new Date().toISOString()});
+    localStorage.setItem('fr_messages', JSON.stringify(msgs));
+    fb.textContent = 'Message saved. We will DM you back shortly.';
+    document.getElementById('contact-form').reset();
+  }
+
+  // Print/save a simple invoice or order snapshot
+  function printInvoice(){
+    const orders = JSON.parse(localStorage.getItem('fr_orders')||'[]');
+    const last = orders.length ? orders[orders.length-1] : null;
+    const w = window.open('','_blank','width=800,height=600');
+    const year = new Date().getFullYear();
+    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Francium Invoice</title>');
+    w.document.write('<style>body{font-family:Arial;background:#111;color:#fff;padding:30px} .box{background:#0f0f0f;padding:20px;border-radius:10px;border:1px solid rgba(255,255,255,0.04)} h1{color:#ff2b2b}</style>');
+    w.document.write('</head><body>');
+    w.document.write('<div class="box">');
+    w.document.write('<h1>Francium Network — Receipt</h1>');
+    if(last){
+      w.document.write('<p><strong>Order ID:</strong> '+last.id+'</p>');
+      w.document.write('<p><strong>Name:</strong> '+escapeHtml(last.name)+'</p>');
+      w.document.write('<p><strong>Contact:</strong> '+escapeHtml(last.contact)+'</p>');
+      w.document.write('<p><strong>TX / Note:</strong> '+escapeHtml(last.txid)+'</p>');
+      w.document.write('<p><strong>Date:</strong> '+new Date(last.created).toLocaleString()+'</p>');
+      w.document.write('<hr>');
+      w.document.write('<p>Item: 100 FreeDNS links</p>');
+      w.document.write('<p>Amount: $1.00</p>');
+    } else {
+      w.document.write('<p>No orders found in this browser. Make a purchase and submit the order form to generate a receipt.</p>');
+    }
+    w.document.write('<p style="margin-top:18px;color:#aaa">© '+year+' Francium Network</p>');
+    w.document.write('</div>');
+    w.document.write('</body></html>');
+    w.document.close();
+    w.focus();
+    // auto-open print dialog
+    setTimeout(()=>w.print(),400);
+  }
+
+  function escapeHtml(s){
+    return (s+'').replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]; });
+  }
+
+  // copy to clipboard helper (not used but available)
+  async function copyToClipboard(text){
+    try{
+      await navigator.clipboard.writeText(text);
+      return true;
+    }catch(e){
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); document.body.removeChild(ta); return true; }catch(err){ document.body.removeChild(ta); return false; }
+    }
+  }
+</script>
+</body>
+</html>
