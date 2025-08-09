@@ -9,8 +9,11 @@
   :root{
     --bg:#0b0b0b;
     --card:#0f0f0f;
-    --accent:#ff2b2b;
-    --accent-2:#ff5555;
+    /* softer default red accents */
+    --accent:#c0392b;
+    --accent-2:#d8726f;
+    --accent-rgba: rgba(192,57,43,0.05);
+    --accent2-rgba: rgba(216,114,111,0.03);
     --muted:#bdbdbd;
     --glass: rgba(255,255,255,0.03);
     --radius:12px;
@@ -19,8 +22,8 @@
   html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
   body{
     background:
-      radial-gradient(800px 400px at 10% 10%, rgba(255,43,43,0.05), transparent 8%),
-      radial-gradient(600px 300px at 90% 90%, rgba(255,85,85,0.03), transparent 6%),
+      radial-gradient(800px 400px at 10% 10%, var(--accent-rgba), transparent 8%),
+      radial-gradient(600px 300px at 90% 90%, var(--accent2-rgba), transparent 6%),
       var(--bg);
     color:#fff;
     -webkit-font-smoothing:antialiased;
@@ -48,6 +51,8 @@
     box-shadow: 0 8px 30px rgba(0,0,0,0.6);
     position:sticky;
     top:24px;
+    display:flex;
+    flex-direction:column;
   }
   .logo{
     display:flex;gap:12px;align-items:center;margin-bottom:12px;
@@ -122,6 +127,11 @@
     .app{grid-template-columns: 1fr; padding-bottom:40px}
     .sidebar{position:relative;top:0;min-height:auto}
   }
+
+  /* QR small card */
+  .qr-card{display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px;border-radius:10px;background:var(--card);}
+  .qr-card img{width:200px;height:200px;border-radius:8px;border:6px solid #fff}
+  .accent-small{color:var(--accent);font-weight:800}
 </style>
 </head>
 <body>
@@ -151,6 +161,18 @@
         <a class="pay-btn" href="https://cash.app/$FranciumNetwork" target="_blank" rel="noopener">Pay with Cash App</a>
         <div class="small">Instant delivery after payment & DM proof.</div>
       </div>
+
+      <div style="margin-top:12px" class="qr-card">
+        <div class="muted little">Scan to pay / open Cash App</div>
+        <!-- embedded QR (base64 PNG) -->
+        <img id="qr-embedded" src="data:image/png;base64,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" alt="QR Code">
+        <a class="muted little" href="https://cash.app/$FranciumNetwork" target="_blank" style="color:var(--accent);font-weight:700;text-decoration:none">Or pay at Cash App</a>
+      </div>
+
+      <div style="margin-top:auto;padding-top:12px">
+        <label class="little">Accent color</label>
+        <input id="colorPicker" type="color" value="#c0392b" style="width:100%;height:36px;border-radius:8px;border:none;margin-top:8px">
+      </div>
     </aside>
 
     <main class="content" id="content">
@@ -179,7 +201,6 @@
           </div>
           <div class="hero-cta">
             <a class="btn" href="https://cash.app/$FranciumNetwork" target="_blank" rel="noopener">Pay $1</a>
-            <button class="btn ghost" onclick="document.getElementById('buy-form').scrollIntoView({behavior:'smooth'})">Order Form</button>
           </div>
         </div>
 
@@ -240,40 +261,16 @@
             <h4>One-click Payment</h4>
             <p class="muted">Click the button to open Cash App. After payment, return and fill the order form.</p>
             <a class="btn" href="https://cash.app/$FranciumNetwork" target="_blank" rel="noopener">Pay via Cash App</a>
+            <div style="margin-top:12px" class="qr-card">
+              <div class="muted little">Scan to pay</div>
+              <img src="data:image/png;base64,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" alt="QR small">
+            </div>
           </div>
 
-          <div style="flex:1;min-width:300px" class="card">
-            <h4>Order Form</h4>
-            <form id="buy-form" class="order-form" onsubmit="placeOrder(event)">
-              <label class="little">Your name</label>
-              <input id="name" placeholder="Name or nickname" required>
 
-              <label class="little">Contact (Discord / Telegram)</label>
-              <input id="contact" placeholder="discord#1234 or @username" required>
-
-              <label class="little">Payment TX ID / Screenshot (paste tx id)</label>
-              <input id="txid" placeholder="Cash App TX ID or note" required>
-
-              <label class="little">Notes (optional)</label>
-              <textarea id="notes" rows="3" placeholder="Any preferences or special requests"></textarea>
-
-              <div style="display:flex;gap:8px">
-                <button type="submit" class="btn">Submit Order</button>
-                <button type="button" class="btn ghost" onclick="clearForm()">Clear</button>
-              </div>
-              <div id="order-feedback" class="muted little" style="margin-top:8px"></div>
-            </form>
-          </div>
         </div>
 
-        <div style="margin-top:16px" class="card">
-          <h4>What happens next?</h4>
-          <ol class="muted">
-            <li>We verify your payment (TX id or screenshot).</li>
-            <li>We generate your pack of 100 links.</li>
-            <li>We send links via DM or on the page you prefer.</li>
-          </ol>
-        </div>
+
       </section>
 
       <!-- FAQ -->
@@ -314,11 +311,11 @@
 
         <div style="margin-top:12px;display:flex;flex-direction:column;gap:12px">
           <div class="card">
-            <strong>alex#1122</strong>
+            <strong>no one</strong>
             <p class="muted">"Super fast delivery — links worked on school wifi. 10/10."</p>
           </div>
           <div class="card">
-            <strong>luna</strong>
+            <strong>no one</strong>
             <p class="muted">"Cheap and reliable. I got my pack in 10 minutes."</p>
           </div>
         </div>
@@ -329,29 +326,19 @@
         <header class="page-hero">
           <div>
             <h2>Contact / Support</h2>
-            <p class="muted">DM on Discord or leave a message here</p>
+            <p class="muted">DM on Discord or use the form below</p>
           </div>
         </header>
 
         <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:320px" class="card">
             <h4>Contact Info</h4>
-            <p class="muted">Discord: <strong>Francium#0001</strong></p>
+            <p class="muted">Discord: <strong>beanbosssssssssiwq2534_</strong></p>
             <p class="muted">Cash App: <strong>$FranciumNetwork</strong></p>
             <p class="muted">Typical response time: 10–60 minutes</p>
           </div>
 
-          <div style="flex:1;min-width:320px" class="card">
-            <h4>Send a Message</h4>
-            <form id="contact-form" onsubmit="sendMessage(event)" class="order-form">
-              <label class="little">Your contact (discord or email)</label>
-              <input id="c-contact" placeholder="discord#1234 or email" required>
-              <label class="little">Message</label>
-              <textarea id="c-message" rows="4" placeholder="How can we help?" required></textarea>
-              <div style="display:flex;gap:8px">
-                <button class="btn" type="submit">Send</button>
-                <button type="button" class="btn ghost" onclick="document.getElementById('contact-form').reset()">Reset</button>
-              </div>
+ 
               <div id="contact-feedback" class="muted little" style="margin-top:8px"></div>
             </form>
           </div>
@@ -385,6 +372,29 @@
   </div>
 
 <script>
+  // Utility: hex -> rgb
+  function hexToRgb(hex){
+    hex = hex.replace('#','');
+    if(hex.length===3) hex = hex.split('').map(h=>h+h).join('');
+    const num = parseInt(hex,16);
+    return [(num>>16)&255, (num>>8)&255, num&255];
+  }
+
+  // set accent colors (updates CSS vars including rgba)
+  function setAccent(hex){
+    const rgb = hexToRgb(hex);
+    const rgb2 = rgb.map(v=>Math.min(255, Math.round(v*1.12))); // lighter second color
+    document.documentElement.style.setProperty('--accent', hex);
+    document.documentElement.style.setProperty('--accent-2', '#' + rgb2.map(v=>v.toString(16).padStart(2,'0')).join(''));
+    document.documentElement.style.setProperty('--accent-rgba', `rgba(${rgb.join(',')},0.05)`);
+    document.documentElement.style.setProperty('--accent2-rgba', `rgba(${rgb2.join(',')},0.03)`);
+    // update small elements that use inline colors (if any)
+    const marks = document.querySelectorAll('.logo .mark');
+    marks.forEach(m => m.style.background = `linear-gradient(135deg, var(--accent), var(--accent-2))`);
+    // persist
+    localStorage.setItem('fr_accent', hex);
+  }
+
   // Basic SPA navigation based on hash
   const pages = Array.from(document.querySelectorAll('.page'));
   const navItems = Array.from(document.querySelectorAll('.nav-item'));
@@ -410,6 +420,10 @@
 
   window.addEventListener('hashchange', ()=> setActiveRoute(window.location.hash));
   window.addEventListener('load', ()=> {
+    // restore accent
+    const saved = localStorage.getItem('fr_accent') || getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+    document.getElementById('colorPicker').value = saved;
+    setAccent(saved);
     setActiveRoute(window.location.hash || '#home');
     document.getElementById('year').textContent = new Date().getFullYear();
   });
@@ -465,7 +479,7 @@
     const w = window.open('','_blank','width=800,height=600');
     const year = new Date().getFullYear();
     w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Francium Invoice</title>');
-    w.document.write('<style>body{font-family:Arial;background:#111;color:#fff;padding:30px} .box{background:#0f0f0f;padding:20px;border-radius:10px;border:1px solid rgba(255,255,255,0.04)} h1{color:#ff2b2b}</style>');
+    w.document.write('<style>body{font-family:Arial;background:#111;color:#fff;padding:30px} .box{background:#0f0f0f;padding:20px;border-radius:10px;border:1px solid rgba(255,255,255,0.04)} h1{color:'+getComputedStyle(document.documentElement).getPropertyValue('--accent')+'}</style>');
     w.document.write('</head><body>');
     w.document.write('<div class="box">');
     w.document.write('<h1>Francium Network — Receipt</h1>');
@@ -506,6 +520,11 @@
       try{ document.execCommand('copy'); document.body.removeChild(ta); return true; }catch(err){ document.body.removeChild(ta); return false; }
     }
   }
+
+  // color picker live update
+  document.getElementById('colorPicker').addEventListener('input', function(){
+    setAccent(this.value);
+  });
 </script>
 </body>
 </html>
